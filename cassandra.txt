@@ -1,0 +1,33 @@
+create keyspace mydb with replication = {'class':'SimpleStrategy','replication_factor':3};
+describe keyspaces;
+ 
+
+use mydb;
+create table emp(empid int primary key,name text,city text,salary int);
+describe tables;
+ 
+
+describe table emp;
+ 
+ 
+insert into emp(empid,name,city,salary) values(1001,'Rahul','Mumbai',35000);
+insert into emp(empid,name,salary) values(1002,'Shreya',32000);
+insert into emp(empid,name,city,salary) values(1003,'Om','Delhi',36000);
+select * from emp;
+ 
+
+select name,city from emp;
+ 
+
+select * from emp where empid=1002;
+ 
+
+select * from emp where salary<35000 allow filtering;
+ 
+create index idx1 on emp(salary);
+update emp set city='Pune' where empid=1002;
+select * from emp;
+ 
+
+delete salary from emp where empid=1001;
+select * from emp;
